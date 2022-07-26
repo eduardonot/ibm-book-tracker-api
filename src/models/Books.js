@@ -7,6 +7,9 @@ const BookSchema = mongoose.Schema({
   autor: {
     type: String,
     required: true
+  },
+  uploadedBy: {
+    type: String
   }
 
 })

@@ -5,6 +5,6 @@ module.exports = {
   connect: async () => {
     await mongoose.connect(`mongodb://localhost:${config.databasePort}/booktracker-eduardolourenco`, config.mongoSetup)
       .then(() => console.log('MongoDB connected'))
-      .catch(() => console.log('Error connecting to database'))
+      .catch(() => console.log('Error connecting to database. Check if MongoDB is running'))
   }
 }

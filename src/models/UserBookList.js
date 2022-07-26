@@ -19,7 +19,7 @@ const UserBookListSchema = mongoose.Schema({
     type: Number,
     validate: {
       validator: Number.isInteger,
-      message: 'Nota deve ser um número inteiro'
+      message: 'Must be an integer number'
     }
   },
   status: {
