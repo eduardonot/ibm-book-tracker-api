@@ -5,7 +5,7 @@ const mongoDatabase = process.env.MONGODB_DB || 'book-catalog'
 
 module.exports = {
   connect: () => {
-    mongoose.connect(`mongodb://${mongoHost}:${mongoPort}/${mongoDatabase}`, {
+    mongoose.connect(`mongodb+srv://admin:admin@cluster0.jfhep.mongodb.net/?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
