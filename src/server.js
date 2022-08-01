@@ -16,6 +16,7 @@ module.exports = class Server {
       app.listen(this.appPort, () => { console.log(`Server is running on port ${this.appPort}`) })
       app.use(express.json())
       app.use(cors())
+      app.get('/', (req, res) => { res.send('Hello World!') })
       routes(app)
       mongo.connect()
       populateDatabase.generateData()
