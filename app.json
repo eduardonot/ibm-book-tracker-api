@@ -1,0 +1,9 @@
+{
+  "name": "My app",
+  "env": {
+    "APP_PORT": {
+      "description": "foo bar",
+      "value": 3000
+    }
+  }
+}
