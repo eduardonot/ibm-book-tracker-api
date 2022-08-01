@@ -1,20 +1,20 @@
 const jwt = require('jsonwebtoken')
-const config = require('./../config')
+const jwtSecret = process.env.JWT_SECRET_KEY || 'secret'
 
 module.exports = {
-  genToken: (user) => {
+  generator: (user) => {
     return jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60 * 60),
       data: {
         id: user._id,
         name: user.username
       }
-    }, config.jwtSecretPassword)
+    }, jwtSecret)
   },
 
-  verifyToken: (token) => {
+  verify: (token) => {
     try {
-      return jwt.verify(token, config.jwtSecretPassword)
+      return jwt.verify(token, jwtSecret)
     } catch (error) {
       return false
     }

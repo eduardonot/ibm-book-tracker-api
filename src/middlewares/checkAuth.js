@@ -1,5 +1,5 @@
 const jwt = require('./../utils/jwt')
-const checkToken = jwt.verifyToken
+const checkToken = jwt.verify
 
 module.exports = {
   checkToken: (req, res, next) => {

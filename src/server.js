@@ -1,22 +1,26 @@
+require('dotenv').config()
 const express = require('express')
-const config = require('./config/index')
 const routes = require('./routes')
-const database = require('./database/mongoose')
-const dbPopulate = require('./database/populate')
+const mongo = require('./infra/helpers/mongooseHelper')
+const cors = require('cors')
+const populateDatabase = require('./infra/helpers/populateDatabase')
 const app = express()
 
-module.exports = {
-  start: () => {
-    // CONNECT TO MONGODB
-    database.connect()
-    // START SERVER
-    app.listen(config.serverPort, () => {
-      console.log(`Server is listening on port ${config.serverPort}`)
-    })
-    app.use(express.json())
-    app.use(routes)
+module.exports = class Server {
+  constructor () {
+    this.appPort = process.env.APP_PORT || 5000
+  }
 
-    // POPULATE DATABASE
-    dbPopulate.generateData()
+  up () {
+    try {
+      app.listen(this.appPort, () => { console.log(`Server is running on port ${this.appPort}`) })
+      app.use(express.json())
+      app.use(cors())
+      routes(app)
+      mongo.connect()
+      populateDatabase.generateData()
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
